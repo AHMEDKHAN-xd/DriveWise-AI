@@ -97,7 +97,7 @@ If no provider is available, the app shows an unavailable message with a **Retry
 DriveWise-AI/
 ├── app.py                 # Main Streamlit application
 ├── requirements.txt       # Python dependencies
-├── ai/
+├── drivewise_ai/
 │   └── diagnosis.py       # AI provider client (Groq + Ollama streaming)
 ├── data/
 │   ├── cars.csv           # Vehicle catalog

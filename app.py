@@ -3,7 +3,10 @@ from datetime import datetime
 import streamlit as st
 import pandas as pd
 
-from ai.diagnosis import get_ai_provider, stream_ai_diagnosis
+from drivewise_ai.diagnosis import (
+    get_ai_provider,
+    stream_ai_diagnosis,
+)
 
 from ui.styles import load_styles
 
