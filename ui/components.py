@@ -24,9 +24,18 @@ def _md(markup):
 # HEADER
 # ============================================================
 
-def show_header(ai_online, category_count):
+def show_header(ai_provider, category_count):
 
-    if ai_online:
+    if ai_provider == "groq":
+
+        status = (
+            '<span class="dw-status-badge">'
+            '<span class="dw-status-dot"></span>'
+            'AI Assistant Ready — powered by Groq'
+            '</span>'
+        )
+
+    elif ai_provider == "ollama":
 
         status = (
             '<span class="dw-status-badge">'
@@ -40,8 +49,33 @@ def show_header(ai_online, category_count):
         status = (
             '<span class="dw-status-badge offline">'
             '<span class="dw-status-dot"></span>'
-            'Local AI Offline — start Ollama to enable AI analysis'
+            'AI Offline — run locally with Ollama or add a '
+            'Groq API key'
             '</span>'
+        )
+
+    if ai_provider == "groq":
+
+        privacy_stat = (
+            '<div class="dw-stat-icon">🤖</div>'
+            '<div class="dw-stat-value">AI Cloud</div>'
+            '<div class="dw-stat-label">Groq-powered analysis</div>'
+        )
+
+    elif ai_provider == "ollama":
+
+        privacy_stat = (
+            '<div class="dw-stat-icon">🛡️</div>'
+            '<div class="dw-stat-value">100% Local</div>'
+            '<div class="dw-stat-label">Private, on-device analysis</div>'
+        )
+
+    else:
+
+        privacy_stat = (
+            '<div class="dw-stat-icon">🛡️</div>'
+            '<div class="dw-stat-value">No AI Setup</div>'
+            '<div class="dw-stat-label">Knowledge base still works</div>'
         )
 
     _md(
@@ -53,11 +87,7 @@ def show_header(ai_online, category_count):
         '</div>'
         f'{status}'
         '<div class="dw-hero-stats">'
-        '<div class="dw-stat">'
-        '<div class="dw-stat-icon">🛡️</div>'
-        '<div class="dw-stat-value">100% Local</div>'
-        '<div class="dw-stat-label">Private, on-device analysis</div>'
-        '</div>'
+        f'<div class="dw-stat">{privacy_stat}</div>'
         '<div class="dw-stat">'
         '<div class="dw-stat-icon">📋</div>'
         f'<div class="dw-stat-value">{category_count} Categories</div>'
@@ -366,7 +396,7 @@ def show_knowledge_base_results(matches):
 
         show_info_alert(
             "No matching issue was found in the current knowledge "
-            "base. The local AI will still analyze your problem."
+            "base. The AI assistant will still analyze your problem."
         )
 
         return
@@ -429,7 +459,7 @@ def show_ai_section_header():
 
     _show_section(
         "🤖 AI Analysis",
-        "Generated locally from your vehicle, symptoms, and "
+        "Generated from your vehicle, symptoms, and "
         "knowledge base matches.",
     )
 
@@ -454,9 +484,10 @@ def show_ai_unavailable(message=None, detail=None):
         return
 
     show_info_alert(
-        "Local AI is currently unavailable. Start Ollama and "
-        "run the diagnosis again. The knowledge-base results "
-        "above are still available."
+        "AI analysis is currently unavailable. Run the app "
+        "locally with Ollama, or add a Groq API key for cloud "
+        "analysis. The knowledge-base results above are still "
+        "available."
     )
 
 
@@ -494,7 +525,7 @@ def show_footer():
         '<div class="dw-footer">'
         '<div class="dw-footer-brand">🚗 DriveWise AI</div>'
         '<div class="dw-footer-text">'
-        'Local AI Vehicle Troubleshooting Assistant'
+        'AI Vehicle Troubleshooting Assistant'
         '</div>'
         '<div class="dw-footer-text">'
         'Troubleshooting guidance only — not a definitive '
