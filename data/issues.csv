@@ -1,0 +1,41 @@
+symptom,possible_cause,recommended_action,severity
+engine overheating,Low coolant,Check coolant level and inspect for leaks,High
+engine overheating,Thermostat failure,Inspect and replace thermostat if necessary,High
+engine overheating,Radiator problem,Inspect radiator and cooling system,High
+engine overheating,Cooling fan failure,Inspect the radiator fan motor fuse and relay,High
+engine overheating,Clogged radiator fins,Clear dust and debris and inspect radiator airflow,High
+engine overheating,Blocked or collapsed radiator hose,Inspect radiator hoses for swelling cracks or internal collapse and replace faulty hoses,High
+engine overheating,Loose or worn drive belt,Inspect the drive belt for cracks and glazing and check tension and pulley alignment,Medium
+battery not starting,Weak battery,Test battery voltage and charge or replace battery,Medium
+battery not starting,Corroded battery terminals,Clean terminals and check battery connections,Low
+battery not starting,Parasitic battery drain,Inspect aftermarket accessories and the charging system,Medium
+battery not starting,Faulty alternator charging,Test charging voltage at the battery with the engine running and have the alternator inspected,Medium
+battery not starting,Worn starter motor,Have the starter motor and its wiring tested by a qualified auto electrician,Medium
+brake noise,Worn brake pads,Inspect and replace brake pads,High
+brake noise,Brake dust or debris,Inspect and clean braking components,Low
+brake noise,Warped brake discs,Have the brake discs measured for thickness and runout and resurface or replace them,High
+brake noise,Worn rear brake shoes,Inspect rear brake shoes and drums and replace worn linings,High
+engine shaking,Spark plug problem,Inspect and replace faulty spark plugs,Medium
+engine shaking,Engine misfire,Scan for diagnostic trouble codes and inspect ignition system,High
+engine shaking,CNG system tuning issue,Have a qualified technician inspect the CNG kit and ignition timing,Medium
+engine shaking,Worn engine mounts,Inspect engine and gearbox mounts for cracked or collapsed rubber and replace worn mounts,Medium
+engine shaking,Contaminated or low-grade fuel,Refuel at a trusted station with the recommended fuel grade and inspect the fuel filter if shaking continues,Medium
+car AC not cooling,Low refrigerant,Check refrigerant level and inspect for leaks,Medium
+car AC not cooling,AC compressor problem,Inspect AC compressor and system pressure,High
+car AC not cooling,Condenser fan failure,Inspect fan operation and repair the electrical fault,Medium
+car AC not cooling,Clogged AC condenser,Inspect and clean condenser fins and check airflow,Medium
+car AC not cooling,Clogged cabin air filter,Inspect the cabin air filter and replace it if it is dusty or blocked,Low
+low engine oil,Oil leak,Inspect engine and repair oil leak,High
+low engine oil,Insufficient oil,Check oil level and add the correct engine oil,High
+suspension noise,Worn suspension bushes,Inspect bushes ball joints and links and replace worn parts,Medium
+suspension noise,Worn shock absorbers,Inspect shocks for leaks and replace worn units,Medium
+suspension noise,Damaged strut mounts,Inspect strut mounts and replace damaged components,Medium
+suspension noise,Worn tie rod ends,Have the tie rod ends and steering linkage inspected and replaced then get the wheel alignment done,Medium
+poor fuel average,Dirty air filter,Inspect and replace the air filter,Low
+poor fuel average,Under-inflated tyres,Set tyre pressures to the manufacturer recommendation,Low
+poor fuel average,Dirty fuel injectors,Inspect the fuel system and service injectors if needed,Medium
+poor fuel average,Dragging brakes,Check for a hot wheel after driving and have the brakes inspected for binding,Medium
+poor fuel average,Overdue oil change interval,Check service history and change the engine oil and filter with the recommended grade,Low
+exhaust smoke,Engine oil burning,Have a professional inspect valve seals piston rings and engine compression,High
+exhaust smoke,Rich fuel mixture,Scan the fuel and ignition systems and service faulty components,Medium
+exhaust smoke,Coolant entering engine,Stop driving when safe and have the cooling system and head gasket inspected,High
