@@ -7,7 +7,7 @@ An AI-powered vehicle diagnostics assistant that helps Pakistani car owners iden
 - **Symptom-based diagnosis** — Describe your car's problem and get matching diagnoses from a curated knowledge base of 40 entries covering 9 common symptom areas: engine overheating, engine shaking, exhaust smoke, low engine oil, poor fuel average, car AC not cooling, brake noise, suspension noise, and battery not starting.
 - **Pakistan-market vehicles** — Includes common local models like Suzuki Alto, Toyota Corolla, and Honda Civic, with generic guidance that applies to any vehicle.
 - **PKR repair cost estimates** — Each likely cause shows an estimated repair cost range in Pakistani Rupees.
-- **AI analysis (optional)** — Streams a detailed second opinion from an AI provider: a free Groq cloud API (Llama 3.3 70B) when a key is configured, or a local Ollama model (`llama3.2:3b`) when running on your own machine. No sign-up required — knowledge-base diagnoses work without any AI setup.
+- **AI analysis (optional)** — Streams a detailed second opinion from an AI provider: a free Groq cloud API (GPT-OSS 120B) when a key is configured, or a local Ollama model (`llama3.2:3b`) when running on your own machine. No sign-up required — knowledge-base diagnoses work without any AI setup.
 - **Graceful AI failure handling** — If the AI provider is offline, errors out, or returns an empty response, the app shows a clear message with a retry button — the knowledge-base results always stay available.
 - **Maintenance schedule** — Suggested service intervals for the selected vehicle.
 - **Diagnosis history** — Session history in the sidebar lets you revisit earlier diagnoses.
@@ -61,7 +61,7 @@ The app opens at `http://localhost:8501`.
 
 Knowledge-base diagnoses work without any AI setup. The app automatically picks the first available provider:
 
-1. **Groq cloud API** — if a `GROQ_API_KEY` is configured (free key, runs Llama 3.3 70B)
+1. **Groq cloud API** — if a `GROQ_API_KEY` is configured (free key, runs GPT-OSS 120B)
 2. **Local Ollama** — if an Ollama server is reachable on your machine
 3. **None** — the AI panel shows an unavailable message; knowledge-base results remain fully usable
 

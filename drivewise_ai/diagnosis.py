@@ -13,7 +13,12 @@ GROQ_API_URL = (
     "https://api.groq.com/openai/v1/chat/completions"
 )
 
-GROQ_MODEL = "llama-3.3-70b-versatile"
+# Groq returns 404 for models the account cannot access (e.g. free-tier
+# keys), so try models in order until one is available.
+GROQ_MODELS = (
+    "openai/gpt-oss-120b",
+    "openai/gpt-oss-20b",
+)
 
 TIMEOUT_SECONDS = 120
 
@@ -100,50 +105,75 @@ def stream_ollama_diagnosis(prompt):
 def stream_groq_diagnosis(prompt, api_key):
     """Yield diagnosis text chunks from the Groq API as they are generated."""
 
-    response = requests.post(
-        GROQ_API_URL,
-        headers={
-            "Authorization": f"Bearer {api_key}",
-            "Content-Type": "application/json",
-        },
-        json={
-            "model": GROQ_MODEL,
-            "messages": [
-                {"role": "user", "content": prompt}
-            ],
-            "stream": True,
-        },
-        stream=True,
-        timeout=TIMEOUT_SECONDS,
-    )
+    last_error = None
 
-    response.raise_for_status()
+    for model in GROQ_MODELS:
 
-    for line in response.iter_lines():
+        try:
 
-        if not line:
-            continue
+            response = requests.post(
+                GROQ_API_URL,
+                headers={
+                    "Authorization": f"Bearer {api_key}",
+                    "Content-Type": "application/json",
+                },
+                json={
+                    "model": model,
+                    "messages": [
+                        {"role": "user", "content": prompt}
+                    ],
+                    "stream": True,
+                },
+                stream=True,
+                timeout=TIMEOUT_SECONDS,
+            )
 
-        text = line.decode("utf-8")
+            response.raise_for_status()
 
-        if not text.startswith("data:"):
-            continue
+        except requests.exceptions.HTTPError as exc:
 
-        payload = text[len("data:"):].strip()
+            status = (
+                exc.response.status_code
+                if exc.response is not None
+                else None
+            )
 
-        if payload == "[DONE]":
-            break
+            if status == 404:
+                last_error = exc
+                continue
 
-        chunk = json.loads(payload)
+            raise
 
-        choices = chunk.get("choices") or [{}]
+        for line in response.iter_lines():
 
-        piece = choices[0].get("delta", {}).get(
-            "content", ""
-        )
+            if not line:
+                continue
 
-        if piece:
-            yield piece
+            text = line.decode("utf-8")
+
+            if not text.startswith("data:"):
+                continue
+
+            payload = text[len("data:"):].strip()
+
+            if payload == "[DONE]":
+                break
+
+            chunk = json.loads(payload)
+
+            choices = chunk.get("choices") or [{}]
+
+            piece = choices[0].get("delta", {}).get(
+                "content", ""
+            )
+
+            if piece:
+                yield piece
+
+        return
+
+    if last_error is not None:
+        raise last_error
 
 
 def stream_ai_diagnosis(prompt):
